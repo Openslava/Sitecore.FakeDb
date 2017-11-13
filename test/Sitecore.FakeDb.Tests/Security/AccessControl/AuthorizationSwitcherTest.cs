@@ -23,6 +23,7 @@
       }
     }
 
+#if !SC90171002
     [Fact]
     public void ShouldSwitchLocalProvider()
     {
@@ -33,6 +34,7 @@
         ((IThreadLocalProvider<AuthorizationProvider>)AuthorizationManager.Provider).LocalProvider.Value.Should().BeSameAs(provider);
       }
     }
+#endif
 
     [Fact]
     public void ShouldSwitchAuthorizationProvider()

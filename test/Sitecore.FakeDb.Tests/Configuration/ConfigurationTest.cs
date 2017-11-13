@@ -45,12 +45,14 @@
       Factory.GetIDTable().Should().BeOfType<FakeIDTableProvider>();
     }
 
+#if !SC90171002
     [Fact]
     public void ShouldGetFakeStandardValuesProvider()
     {
       // assert
       StandardValuesManager.Provider.Should().BeOfType<FakeStandardValuesProvider>();
     }
+#endif
 
     [Fact]
     public void ShouldDisableAllDataProviderCaches()

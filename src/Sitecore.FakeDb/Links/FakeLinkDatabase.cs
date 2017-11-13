@@ -72,11 +72,13 @@ namespace Sitecore.FakeDb.Links
       return this.IsLocalProviderSet() ? this.localProvider.Value.GetReferrers(item) : this.emptyLinks;
     }
 
+#if !SC90171002
     [Obsolete("Deprecated - Use GetReferrers(item) instead.")]
     public override ItemLink[] GetReferrers(Item item, bool deep)
     {
       return this.IsLocalProviderSet() ? this.localProvider.Value.GetReferrers(item, deep) : this.emptyLinks;
     }
+#endif
 
     public override bool HasExternalReferrers(Item item, bool deep)
     {

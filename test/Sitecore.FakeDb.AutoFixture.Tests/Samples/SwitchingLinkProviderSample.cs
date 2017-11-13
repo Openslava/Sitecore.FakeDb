@@ -1,4 +1,4 @@
-﻿#if !SC72160123 && !SC82160729 && !SC82161115 && !SC82161221
+﻿#if !SC72160123 && !SC82160729 && !SC82161115 && !SC82161221 && !SC90171002
 namespace Sitecore.FakeDb.AutoFixture.Tests.Samples
 {
   using System;

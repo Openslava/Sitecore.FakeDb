@@ -17,8 +17,10 @@
       // act
       using (new MediaProviderSwitcher(behaviour))
       {
-        // assert
+                // assert
+#if !SC90171002
         ((IThreadLocalProvider<MediaProvider>)MediaManager.Provider).LocalProvider.Value.Should().Be(behaviour);
+#endif
       }
     }
   }

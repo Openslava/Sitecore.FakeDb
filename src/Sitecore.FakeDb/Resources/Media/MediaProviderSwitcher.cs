@@ -5,7 +5,11 @@
   public class MediaProviderSwitcher : ThreadLocalProviderSwitcher<MediaProvider>
   {
     public MediaProviderSwitcher(MediaProvider innerProvider)
+#if SC90171002
+      : base(null, innerProvider)
+#else
       : base((IThreadLocalProvider<MediaProvider>)MediaManager.Provider, innerProvider)
+#endif
     {
     }
   }

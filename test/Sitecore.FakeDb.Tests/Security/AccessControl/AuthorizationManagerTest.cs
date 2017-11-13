@@ -7,11 +7,13 @@
 
   public class AuthorizationManagerTest
   {
-    [Fact]
+#if !SC90171002
+        [Fact]
     public void ShouldResolveDefaultAuthorizationProvider()
     {
       // act & assert
       AuthorizationManager.Provider.Should().BeOfType<FakeAuthorizationProvider>();
     }
+#endif
   }
 }

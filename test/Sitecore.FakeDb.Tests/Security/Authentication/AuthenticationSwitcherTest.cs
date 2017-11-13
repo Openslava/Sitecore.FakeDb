@@ -1,4 +1,5 @@
-﻿namespace Sitecore.FakeDb.Tests.Security.Authentication
+﻿#if !SC90171002
+namespace Sitecore.FakeDb.Tests.Security.Authentication
 {
   using FluentAssertions;
   using NSubstitute;
@@ -41,3 +42,4 @@
     }
   }
 }
+#endif

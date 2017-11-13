@@ -1,4 +1,5 @@
-﻿namespace Sitecore.FakeDb.Links
+﻿#if !SC90171002
+namespace Sitecore.FakeDb.Links
 {
   using System;
   using Sitecore.Common;
@@ -10,14 +11,14 @@
             "Under Test (SUT) via constructor.")]
   public class LinkProviderSwitcher : Switcher<LinkProvider>
   {
-#if !SC72160123
+#if !SC72160123 && !SC90171002
     private readonly Sitecore.Links.LinkProviderSwitcher providerSwitcher;
 #endif
 
     public LinkProviderSwitcher(LinkProvider linkProviderToSwitchTo)
       : base(linkProviderToSwitchTo)
     {
-#if !SC72160123
+#if !SC72160123 && !SC90171002
       this.providerSwitcher = new Sitecore.Links.LinkProviderSwitcher("switcher");
 #endif
     }
@@ -31,3 +32,4 @@
     }
   }
 }
+#endif
