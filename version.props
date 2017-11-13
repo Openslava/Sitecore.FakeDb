@@ -6,5 +6,6 @@
     -->
     <SupportedSitecoreVersions>7.2.160123;8.0.160115;8.1.160519</SupportedSitecoreVersions>
     <SupportedSitecoreVersions452>8.2.160729;8.2.161115;8.2.161221</SupportedSitecoreVersions452>
+    <SupportedSitecoreVersions462>9.0.171002</SupportedSitecoreVersions462>
   </PropertyGroup>
 </Project>
