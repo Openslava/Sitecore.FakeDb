@@ -4,7 +4,6 @@
   using FluentAssertions;
   using Sitecore.Configuration;
   using Sitecore.Data;
-  using Sitecore.FakeDb.Data;
   using Sitecore.FakeDb.Data.Engines.DataCommands.Prototypes;
   using Sitecore.FakeDb.Data.IDTables;
   using Xunit;
@@ -44,15 +43,6 @@
       // assert
       Factory.GetIDTable().Should().BeOfType<FakeIDTableProvider>();
     }
-
-#if !SC90171002
-    [Fact]
-    public void ShouldGetFakeStandardValuesProvider()
-    {
-      // assert
-      StandardValuesManager.Provider.Should().BeOfType<FakeStandardValuesProvider>();
-    }
-#endif
 
     [Fact]
     public void ShouldDisableAllDataProviderCaches()

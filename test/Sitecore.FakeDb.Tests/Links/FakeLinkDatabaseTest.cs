@@ -161,19 +161,6 @@
       this.linkDatabase.GetItemVersionReferrers(this.item).ShouldBeEquivalentTo(this.links);
     }
 
-#if !SC90171002
-    [Fact]
-    [Obsolete]
-    public void ShouldGetReferrersDeep()
-    {
-      // arrange
-      this.behavior.GetReferrers(this.item, false).Returns(this.links);
-
-      // act & assert
-      this.linkDatabase.GetReferrers(this.item, false).ShouldBeEquivalentTo(this.links);
-    }
-#endif
-
     [Fact]
     public void ShouldCallHasExternalReferrers()
     {
