@@ -178,7 +178,6 @@
     <Compile Include="Configuration\ConfigurationTest.cs" />
     <Compile Include="Configuration\DbConfigurationTest.cs" />
     <Compile Include="Configuration\SettingsTest.cs" />
-    <Compile Include="ContentSearch\ContentSearchManagerTest.cs" />
     <Compile Include="Data\DataProviders\FakeDataProviderTest.cs" />
     <Compile Include="Data\Engines\DataCommands\AddFromTemplateCommandTest.cs" />
     <Compile Include="Data\Engines\DataCommands\DataEngineCommandTest.cs" />
@@ -232,7 +231,6 @@
     <Compile Include="Pipelines\SetStatisticsTest.cs" />
     <Compile Include="Profile\UserProfileTest.cs" />
     <Compile Include="Runtime\FluentAssertionsTest.cs" />
-    <Compile Include="Samples\ContentSearchSamples.cs" />
     <Compile Include="Security\AccessControl\AllowAccessResultTest.cs" />
     <Compile Include="Security\AccessControl\DenyAccessResultTest.cs" />
     <Compile Include="Security\AccessControl\ItemSecurityTest.cs" />

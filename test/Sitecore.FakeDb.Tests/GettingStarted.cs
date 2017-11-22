@@ -636,43 +636,6 @@
     }
 
     [Fact]
-    public void HowToMockContentSearchLogic()
-    {
-      var index = Substitute.For<Sitecore.ContentSearch.ISearchIndex>();
-
-      // don't forget to clean up.
-      Sitecore.ContentSearch
-        .ContentSearchManager.SearchConfiguration.Indexes["my_index"] = index;
-
-      using (Sitecore.FakeDb.Db db = new Sitecore.FakeDb.Db
-        {
-          new Sitecore.FakeDb.DbItem("home")
-        })
-      {
-        // configure a search result item behavior.
-        var searchResultItem =
-          Substitute.For<Sitecore.ContentSearch.SearchTypes.SearchResultItem>();
-
-        var expectedItem = db.GetItem("/sitecore/content/home");
-        searchResultItem.GetItem().Returns(expectedItem);
-
-        // configure a search ndex behavior.
-        index.CreateSearchContext()
-          .GetQueryable<Sitecore.ContentSearch.SearchTypes.SearchResultItem>()
-          .Returns((new[] { searchResultItem }).AsQueryable());
-
-        // get the item from the search index and check the expectations.
-        Sitecore.Data.Items.Item actualItem =
-          index.CreateSearchContext()
-            .GetQueryable<Sitecore.ContentSearch.SearchTypes.SearchResultItem>()
-            .Single()
-            .GetItem();
-
-        Xunit.Assert.Equal(expectedItem, actualItem);
-      }
-    }
-
-    [Fact]
     public void HowToMockIdTable()
     {
       // arrange
