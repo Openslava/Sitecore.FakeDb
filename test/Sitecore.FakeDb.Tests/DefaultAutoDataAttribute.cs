@@ -1,5 +1,6 @@
 ﻿namespace Sitecore.FakeDb.Tests
 {
+  using System.Xml;
   using NSubstitute;
   using Ploeh.AutoFixture;
   using Ploeh.AutoFixture.AutoNSubstitute;
@@ -8,6 +9,7 @@
   using Sitecore.FakeDb.Data.Engines;
   using Sitecore.FakeDb.Data.Items;
   using Sitecore.Globalization;
+  using Sitecore.Xml;
 
   internal class DefaultAutoDataAttribute : AutoDataAttribute
   {
@@ -42,6 +44,18 @@
       fixture.Inject(Substitute.For<DataStorage>(database));
       fixture.Register(ItemHelper.CreateInstance);
       fixture.Register(() => Language.Parse("en"));
+      fixture.Customize<XmlNode>(x => x
+        .FromFactory(() =>
+        {
+          var node = new XmlDocument()
+            .CreateNode(
+              XmlNodeType.Element,
+              fixture.Create<string>(),
+              null);
+          XmlUtil.AddAttribute("name", fixture.Create<string>(), node);
+          return node;
+        })
+        .OmitAutoProperties());
     }
   }
 }

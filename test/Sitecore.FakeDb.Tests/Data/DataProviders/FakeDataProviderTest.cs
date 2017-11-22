@@ -35,7 +35,7 @@
 
     [Theory, DefaultAutoData]
     public void AddVersionThrowsIfItemDefinitionNotFound(
-      [Greedy]FakeDataProvider sut,
+      [Greedy] FakeDataProvider sut,
       ItemDefinition itemDefinition,
       VersionUri baseVersion)
     {
@@ -46,7 +46,7 @@
 
     [Theory, DefaultAutoData]
     public void AddVersionAddsNewVersionAndReturnsNewVersionNumber(
-      [Greedy]FakeDataProvider sut,
+      [Greedy] FakeDataProvider sut,
       ItemDefinition itemDefinition,
       Language language,
       int version,
@@ -220,20 +220,27 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ChangeTemplateThrowsIfNoDbItemFound([Greedy]FakeDataProvider sut, ItemDefinition def, TemplateChangeList changes)
+    public void ChangeTemplateThrowsIfNoDbItemFound(
+      [Greedy] FakeDataProvider sut,
+      ItemDefinition def,
+      TemplateChangeList changes)
     {
       Action action = () => sut.ChangeTemplate(def, changes, null);
       action.ShouldThrow<InvalidOperationException>()
-            .WithMessage("Unable to change item template. The item '{0}' is not found.".FormatWith(def.ID));
+        .WithMessage("Unable to change item template. The item '{0}' is not found.".FormatWith(def.ID));
     }
 
     [Theory, DefaultAutoData]
-    public void ChangeTemplateThrowsIfNoTargetTemplateFound([Greedy]FakeDataProvider sut, ItemDefinition def, TemplateChangeList changes, DbItem item)
+    public void ChangeTemplateThrowsIfNoTargetTemplateFound(
+      [Greedy] FakeDataProvider sut,
+      ItemDefinition def,
+      TemplateChangeList changes,
+      DbItem item)
     {
       sut.DataStorage.GetFakeItem(def.ID).Returns(item);
       Action action = () => sut.ChangeTemplate(def, changes, null);
       action.ShouldThrow<InvalidOperationException>()
-            .WithMessage("Unable to change item template. The target template is not found.");
+        .WithMessage("Unable to change item template. The target template is not found.");
     }
 
     [Theory, DefaultAutoData]
@@ -361,21 +368,21 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplateIds([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplateIds([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
       sut.GetTemplateItemIds(null).Should().Contain(template.ID);
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplatesFromDataStorage([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplatesFromDataStorage([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
       sut.GetTemplates(null).Should().HaveCount(1);
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplatesWithDefaultDataSectionFromDataStorage([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplatesWithDefaultDataSectionFromDataStorage([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
 
@@ -385,7 +392,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldHaveStandardBaseTemplate([Greedy]FakeDataProvider sut, [NoAutoProperties]DbTemplate template)
+    public void ShouldHaveStandardBaseTemplate([Greedy] FakeDataProvider sut, [NoAutoProperties] DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
 
@@ -395,7 +402,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplateFields([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplateFields([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
       template.Fields.Add("Title");
@@ -406,7 +413,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplateFieldType([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplateFieldType([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
       template.Fields.Add(new DbField("Link") { Type = "General Link" });
@@ -417,7 +424,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplateFieldIsShared([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplateFieldIsShared([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
       template.Fields.Add(new DbField("Title") { Shared = true });
@@ -428,7 +435,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetTemplateFieldSource([Greedy]FakeDataProvider sut, DbTemplate template)
+    public void ShouldGetTemplateFieldSource([Greedy] FakeDataProvider sut, DbTemplate template)
     {
       sut.DataStorage.GetFakeTemplates().Returns(new[] { template });
       template.Fields.Add(new DbField("Multilist") { Source = "/sitecore/content" });
@@ -439,14 +446,14 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetDefaultLanguage([Greedy]FakeDataProvider sut, CallContext context)
+    public void ShouldGetDefaultLanguage([Greedy] FakeDataProvider sut, CallContext context)
     {
       var langs = sut.GetLanguages(context);
       langs.Should().BeEmpty();
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetItemDefinition([Greedy]FakeDataProvider sut, DbItem item, CallContext context)
+    public void ShouldGetItemDefinition([Greedy] FakeDataProvider sut, DbItem item, CallContext context)
     {
       // arrange
       sut.DataStorage.GetFakeItem(item.ID).Returns(item);
@@ -462,22 +469,22 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetNullItemDefinitionIfNoItemFound([Greedy]FakeDataProvider sut, ID itemId, CallContext context)
+    public void ShouldGetNullItemDefinitionIfNoItemFound([Greedy] FakeDataProvider sut, ID itemId, CallContext context)
     {
       sut.GetItemDefinition(itemId, context).Should().BeNull();
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetAllThePossibleItemVersions([Greedy]FakeDataProvider sut, ItemDefinition def, CallContext context)
+    public void ShouldGetAllThePossibleItemVersions([Greedy] FakeDataProvider sut, ItemDefinition def, CallContext context)
     {
       // arrange
       var item = new DbItem("home", def.ID, def.TemplateID)
       {
         Fields =
-                       {
-                         new DbField("Field 1") { { "en", 1, string.Empty }, { "en", 2, string.Empty }, { "da", 1, string.Empty } },
-                         new DbField("Field 2") { { "en", 1, string.Empty }, { "da", 1, string.Empty }, { "da", 2, string.Empty } }
-                       }
+            {
+              new DbField("Field 1") {{"en", 1, string.Empty}, {"en", 2, string.Empty}, {"da", 1, string.Empty}},
+              new DbField("Field 2") {{"en", 1, string.Empty}, {"da", 1, string.Empty}, {"da", 2, string.Empty}}
+            }
       };
 
       sut.DataStorage.GetFakeItem(def.ID).Returns(item);
@@ -498,7 +505,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetEmptyVersionsIfNoFakeItemFound([Greedy]FakeDataProvider sut, ItemDefinition def, CallContext context)
+    public void ShouldGetEmptyVersionsIfNoFakeItemFound([Greedy] FakeDataProvider sut, ItemDefinition def, CallContext context)
     {
       sut.GetItemVersions(def, context).Should().BeEmpty();
     }
@@ -545,7 +552,7 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ShouldGetNullItemFieldsIfNoItemFound([Greedy]FakeDataProvider sut, ItemDefinition def, VersionUri versionUri, CallContext context)
+    public void ShouldGetNullItemFieldsIfNoItemFound([Greedy] FakeDataProvider sut, ItemDefinition def, VersionUri versionUri, CallContext context)
     {
       sut.GetItemFields(def, versionUri, context).Should().BeNull();
     }
@@ -684,7 +691,7 @@
 
     [Theory, DefaultAutoData]
     public void MoveItemThrowsIfItemDefinitionNotFound(
-      [Greedy]FakeDataProvider sut,
+      [Greedy] FakeDataProvider sut,
       ItemDefinition itemDefinition,
       ItemDefinition destination)
     {
@@ -695,10 +702,10 @@
 
     [Theory, DefaultAutoData]
     public void MoveItemThrowsIfDestinationNotFound(
-     [Greedy]FakeDataProvider sut,
-     ItemDefinition itemDefinition,
-     ItemDefinition destination,
-     DbItem item)
+      [Greedy] FakeDataProvider sut,
+      ItemDefinition itemDefinition,
+      ItemDefinition destination,
+      DbItem item)
     {
       sut.DataStorage.GetFakeItem(itemDefinition.ID).Returns(item);
       Action action = () => sut.MoveItem(itemDefinition, destination, null);
@@ -708,12 +715,12 @@
 
     [Theory, DefaultAutoData]
     public void MoveItemRemovesFromOldParentChildrenIfExists(
-     [Greedy]FakeDataProvider sut,
-     ItemDefinition itemDefinition,
-     ItemDefinition destination,
-     DbItem item,
-     DbItem newDestination,
-     DbItem oldParent)
+      [Greedy] FakeDataProvider sut,
+      ItemDefinition itemDefinition,
+      ItemDefinition destination,
+      DbItem item,
+      DbItem newDestination,
+      DbItem oldParent)
     {
       oldParent.Children.Add(item);
       sut.DataStorage.GetFakeItem(itemDefinition.ID).Returns(item);
@@ -727,11 +734,11 @@
 
     [Theory, DefaultAutoData]
     public void MoveItemToNewDestinationReturnsTrue(
-     [Greedy]FakeDataProvider sut,
-     ItemDefinition itemDefinition,
-     ItemDefinition destination,
-     DbItem item,
-     DbItem newDestination)
+      [Greedy] FakeDataProvider sut,
+      ItemDefinition itemDefinition,
+      ItemDefinition destination,
+      DbItem item,
+      DbItem newDestination)
     {
       sut.DataStorage.GetFakeItem(itemDefinition.ID).Returns(item);
       sut.DataStorage.GetFakeItem(destination.ID).Returns(newDestination);
@@ -746,7 +753,7 @@
     public void ShouldSetBlobStreamInDataStorage(
       [Greedy] FakeDataProvider sut,
       Guid blobId,
-      [Modest]MemoryStream stream,
+      [Modest] MemoryStream stream,
       CallContext context)
     {
       sut.SetBlobStream(stream, blobId, context);
@@ -808,7 +815,7 @@
 
     [Theory, DefaultAutoData]
     public void RemoveVersionThrowsIfItemDefinitionNotFound(
-      [Greedy]FakeDataProvider sut,
+      [Greedy] FakeDataProvider sut,
       ItemDefinition itemDefinition,
       VersionUri baseVersion)
     {
@@ -819,7 +826,7 @@
 
     [Theory, DefaultAutoData]
     public void RemoveVersionReturnsFalseIfNoVersionFound(
-      [Greedy]FakeDataProvider sut,
+      [Greedy] FakeDataProvider sut,
       ItemDefinition itemDefinition,
       VersionUri version,
       DbItem item)
@@ -830,7 +837,7 @@
 
     [Theory, DefaultAutoData]
     public void RemoveVersionRemovesVersionAndReturnsTrue(
-      [Greedy]FakeDataProvider sut,
+      [Greedy] FakeDataProvider sut,
       ItemDefinition itemDefinition,
       Language language,
       DbItem item)
