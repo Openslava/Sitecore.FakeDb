@@ -76,7 +76,6 @@
 
       var item = this.DataStorage.GetFakeItem(itemDefinition.ID);
       Assert.IsNotNull(item, "Unable to change item template. The item '{0}' is not found.", itemDefinition.ID);
-      Assert.IsNotNull(changes.Target, "Unable to change item template. The target template is not found.");
 
       item.TemplateID = changes.Target.ID;
       return true;

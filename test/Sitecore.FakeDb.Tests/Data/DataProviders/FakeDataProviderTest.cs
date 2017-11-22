@@ -231,19 +231,6 @@
     }
 
     [Theory, DefaultAutoData]
-    public void ChangeTemplateThrowsIfNoTargetTemplateFound(
-      [Greedy] FakeDataProvider sut,
-      ItemDefinition def,
-      TemplateChangeList changes,
-      DbItem item)
-    {
-      sut.DataStorage.GetFakeItem(def.ID).Returns(item);
-      Action action = () => sut.ChangeTemplate(def, changes, null);
-      action.ShouldThrow<InvalidOperationException>()
-        .WithMessage("Unable to change item template. The target template is not found.");
-    }
-
-    [Theory, DefaultAutoData]
     public void DeleteItemThrowsIfItemDefinitionIsNull(FakeDataProvider sut)
     {
       Action action = () => sut.DeleteItem(null, null);
