@@ -9,7 +9,7 @@ namespace Sitecore.FakeDb.Tests.Data.Fields
   [Trait("Category", "RequireLicense")]
   public class LayoutFieldTest
   {
-    [Fact(Skip = "To be fixed by a contributor")]
+    [Fact]
     public void ShouldBeAbleToSetLayoutFieldValue()
     {
       ID itemId = ID.NewID;
@@ -40,7 +40,7 @@ namespace Sitecore.FakeDb.Tests.Data.Fields
       }
     }
 
-    [Fact(Skip = "To be fixed by a contributor")]
+    [Fact]
     public void ShouldWorkWithLayoutDeltas()
     {
       ID templateId = ID.NewID;
