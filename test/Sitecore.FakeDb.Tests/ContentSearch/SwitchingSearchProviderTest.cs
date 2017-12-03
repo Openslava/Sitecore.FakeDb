@@ -1,5 +1,4 @@
-﻿#if !SC72160123 && !SC80160115
-namespace Sitecore.FakeDb.Tests.ContentSearch
+﻿namespace Sitecore.FakeDb.Tests.ContentSearch
 {
   using FluentAssertions;
   using NSubstitute;
@@ -50,4 +49,3 @@ namespace Sitecore.FakeDb.Tests.ContentSearch
     }
   }
 }
-#endif

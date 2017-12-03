@@ -1,5 +1,4 @@
-﻿#if !SC72160123 && !SC80160115
-namespace Sitecore.FakeDb.ContentSearch
+﻿namespace Sitecore.FakeDb.ContentSearch
 {
   using Sitecore.Abstractions;
   using Sitecore.Common;
@@ -26,4 +25,3 @@ namespace Sitecore.FakeDb.ContentSearch
     }
   }
 }
-#endif

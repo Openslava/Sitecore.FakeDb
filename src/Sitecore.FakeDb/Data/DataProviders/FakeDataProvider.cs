@@ -50,12 +50,10 @@
       return true;
     }
 
-#if !SC80160115 // Missing in 8.0
     public override bool AddToPublishQueue(ID itemId, string action, DateTime date, string language, CallContext context)
     {
       return this.AddToPublishQueue(itemId, action, date, context);
     }
-#endif
 
     public override int AddVersion(ItemDefinition itemDefinition, VersionUri baseVersion, CallContext context)
     {

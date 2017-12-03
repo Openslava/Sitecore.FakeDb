@@ -572,7 +572,6 @@
       sut.AddToPublishQueue(itemId, action, date, context).Should().BeTrue();
     }
 
-#if !SC80160115 // Missing in 8.0
     [Theory, DefaultAutoData]
     public void AddToPublishQueueWithLanguageReturnsTrue(
       [Greedy] FakeDataProvider sut,
@@ -584,7 +583,6 @@
     {
       sut.AddToPublishQueue(itemId, action, date, language, context).Should().BeTrue();
     }
-#endif
 
     [Theory, DefaultAutoData]
     public void AddToPublishQueueSameItemIdMultipleTimesReturnsTrue(
